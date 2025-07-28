@@ -1,7 +1,6 @@
 import { AdminEntityConfig } from '@/admin-builder/_types';
-import { EntityBuilder } from '@/admin-builder/entity-builder';
 
-const entityCfg: AdminEntityConfig = {
+export const entityCfg: AdminEntityConfig = {
   name: 'user',
   title: 'Users',
   fields: [
@@ -27,7 +26,3 @@ const entityCfg: AdminEntityConfig = {
     },
   ],
 };
-
-export const UserEntity = EntityBuilder.init({
-  config: entityCfg,
-});
