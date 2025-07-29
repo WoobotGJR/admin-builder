@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧩 Admin Builder
 
-## Getting Started
+Модульная платформа для сборки административных интерфейсов с использованием **Next.js**, **Drizzle ORM**, **React Hook Form**, и **TypeScript**. Система построена по принципу провайдеров и схем, позволяя быстро собирать CRUD-интерфейсы на основе декларативных конфигураций.
 
-First, run the development server:
+---
+
+## 🚀 Стек технологий
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Drizzle ORM**
+- **PostgreSQL**
+- **React Hook Form + shadcn/ui**
+- **Modular architecture / DI containers**
+
+---
+
+## 📦 Структура проекта
+
+├── admin-builder/ # Ядро системы: DI контейнеры, схемы, формы, генераторы UI</br>
+├── app/ # Next.js app router: страницы, layout, schemas</br>
+├── components/ # UI-библиотека (на основе shadcn/ui)</br>
+├── drizzle/ # SQL-миграции Drizzle ORM</br>
+├── entities/ # Бизнес-логика конкретных сущностей (user, и т.д.)</br>
+├── lib/ # Утилиты и общий код</br>
+
+---
+
+## ⚙️ Быстрый старт
+
+### 1. Установка зависимостей
 
 ```bash
-npm run dev
-# or
+1. Установка проекта
+yarn install
+2. Настройка базы данных
+Создай .env файл на основе .env.example:
+3. Запуск dev-сервера
+bash
+Копировать
+Редактировать
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+📁 Основные директории
+admin-builder/
+Ядро системы — всё, что нужно для сборки интерфейсов по декларативной схеме:
+
+_entity-schema.ts — описание полей сущности
+
+_upsert-entity-form.tsx — генерация формы редактирования
+
+_entity-page.tsx — CRUD-страница
+
+_container.ts — DI контейнер для инъекции зависимостей
+
+_action.ts — create / update / get действия
+
+_entity-card.tsx — отображение карточки сущности
+
+app/admin/users/page.tsx
+Реализация страницы /admin/users, с использованием сборщика из admin-builder.
+
+entities/user/
+Инкапсулированная логика конкретной сущности (user): конфигурация, серверные и клиентские методы, настройки базы.
+
+📌 Создание новой сущности
+Добавь в entities/ новую папку (product/, article/ и т.д.)
+
+Создай:
+
+config.ts — описание схемы
+
+server.ts / client.ts — API
+
+db.ts — модель таблицы
+
+Подключи к admin-builder с помощью provider(...) и схемы
+
+🛠 Используемые библиотеки
+Next.js
+
+Drizzle ORM
+
+shadcn/ui
+
+react-hook-form
+
+TypeScript
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

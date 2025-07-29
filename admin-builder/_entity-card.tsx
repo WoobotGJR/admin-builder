@@ -25,7 +25,7 @@ export const EntityCardProvider = AdminClientEntityBuilderContainer.provider(
             <CardAction>Card Action</CardAction>
           </CardHeader>
           <CardContent>
-            {Object.entries(entity).map(([key, value]) => {
+            {Object.entries(entity).map(([key, value]) => {1
               if (!config.fields.find((field) => field.name == key))
                 return null;
 
