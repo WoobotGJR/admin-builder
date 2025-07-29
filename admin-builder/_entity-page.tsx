@@ -26,10 +26,14 @@ export const EntityPageProvider = AdminClientEntityBuilderContainer.provider(
       const [entities, setEnities] = useState<GetEntityResult[]>([]);
       const [isLoading] = useTransition();
 
-      useEffect(() => {
+      const fetch = () => {
         action({ type: 'get' }).then((res) => {
           if (res) setEnities(res);
         });
+      };
+
+      useEffect(() => {
+        fetch();
       }, []);
       return (
         <div>
@@ -47,7 +51,7 @@ export const EntityPageProvider = AdminClientEntityBuilderContainer.provider(
                     you&apos;re done.
                   </DialogDescription>
                 </DialogHeader>
-                <UpsertEntityForm onSuccess={() => {}} />
+                <UpsertEntityForm onSuccess={() => fetch()} />
               </DialogContent>
             </form>
           </Dialog>
