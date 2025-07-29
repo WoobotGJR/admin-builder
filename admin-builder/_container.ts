@@ -1,7 +1,8 @@
 import { createContainer, mergeContainers } from 'tiny-invert';
-import { AdminEntityConfig } from './_types';
+import { AdminBuilderAction, AdminEntityConfig } from './_types';
 import { Sql } from 'postgres';
 
+// Utility containers
 export const DBClientContainer = createContainer<{
   dbClient: Sql;
 }>();
@@ -10,6 +11,7 @@ export const ConfigContainer = createContainer<{
   config: AdminEntityConfig;
 }>();
 
+// Entry containers
 export const AdminDBEntityBuilderContainer = mergeContainers([
   DBClientContainer,
   ConfigContainer,
@@ -18,7 +20,7 @@ export const AdminDBEntityBuilderContainer = mergeContainers([
 export const AdminServerEntityBuilderContainer = mergeContainers([
   DBClientContainer,
   ConfigContainer,
-]);
+]).extend('AdminServerEntityBuilderContainer');
 
 export const AdminActionEntityBuilderContainer = mergeContainers([
   DBClientContainer,
@@ -26,6 +28,7 @@ export const AdminActionEntityBuilderContainer = mergeContainers([
 ]);
 
 export const AdminClientEntityBuilderContainer = mergeContainers([
-  DBClientContainer,
   ConfigContainer,
-]);
+]).extend<{
+  action: AdminBuilderAction;
+}>('AdminClientEntityBuilderContainer');

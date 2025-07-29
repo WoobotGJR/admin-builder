@@ -10,7 +10,7 @@ export const entityCfg: AdminEntityConfig = {
       title: 'Name',
     },
     {
-      type: 'field',
+      type: 'select',
       name: 'role',
       title: 'Role',
       options: [
